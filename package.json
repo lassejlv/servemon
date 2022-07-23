@@ -1,29 +1,29 @@
 {
-  "name": "servemon",
-  "version": "0.0.1",
-  "description": "Simple CLI to serve static sites. (Not react, next, remix & etc)",
-  "main": "cli.js",
-  "type": "commonjs",
-  "homepage": "https://servemon.js.org",
-  "repository": {
-    "url": "https://github.com/lassv/servemon"
-  },
-  "bin": {
-    "servemon": "src/cli.js",
-    "run": "src/cli.js"
-  },
-  "scripts": {
-    "dev": "node src/cli.js",
-    "dev:test": "servemon -p 8080 -s ./build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@moebius/http-graceful-shutdown": "^1.1.0",
-    "chalk": "4.1.2",
-    "chokidar": "^3.5.3",
-    "cli-spinner": "^0.2.10",
-    "express": "^4.18.1"
-  }
+    "name": "servemon",
+    "version": "0.0.3",
+    "description": "Simple CLI to serve static sites. (Not react, next, remix & etc)",
+    "main": "cli.js",
+    "type": "commonjs",
+    "homepage": "https://servemon.js.org",
+    "repository": {
+        "url": "https://github.com/lassv/servemon"
+    },
+    "bin": {
+        "servemon": "src/cli.js",
+        "run": "src/cli.js"
+    },
+    "scripts": {
+        "dev": "node src/cli.js",
+        "dev:test": "servemon -p 8080 -s ./build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@moebius/http-graceful-shutdown": "^1.1.0",
+        "chalk": "4.1.2",
+        "chokidar": "^3.5.3",
+        "cli-spinner": "^0.2.10",
+        "express": "^4.18.1"
+    }
 }

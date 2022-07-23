@@ -13,27 +13,33 @@ const Logger = require("./utils/Logger");
 const child_process = require("child_process");
 const chokidar = require("chokidar");
 
-const configFile = path.join(__dirname, "servemon.config.js");
-const configContent = require(configFile);
-const time = Date.now();
+const configFile = path.join(process.cwd(), config.configFile);
 
 if (!fs.existsSync(configFile)) {
-    console.log(chalk.red(`Config file ${configFile} not found.`));
+    new Logger("error").log(
+        `${chalk.gray("Could not find config file:")} ${config.configFile}`
+    );
     process.exit(1);
 }
-
 new Logger("info").log("Starting Servemon...");
+
+const configContent = require(configFile);
+const time = Date.now();
 
 // Express Configuration
 app.use(express.static(configContent.directory || config.defaultDirectory));
 
 app.get("/", (req, res) => {
-    res.sendFile(
-        path.join(
-            configContent.directory || config.defaultDirectory,
-            "index.html"
-        )
-    );
+    try {
+        res.sendFile(
+            path.join(
+                configContent.directory || config.defaultDirectory,
+                "index.html"
+            )
+        );
+    } catch (error) {
+        new Logger("error").log(error.message);
+    }
 });
 
 // The server variable.

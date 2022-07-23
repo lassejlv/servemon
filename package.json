@@ -4,6 +4,10 @@
   "description": "Simple CLI to serve static sites. (Not react, next, remix & etc)",
   "main": "cli.js",
   "type": "commonjs",
+  "homepage": "https://servemon.js.org",
+  "repository": {
+    "url": "https://github.com/lassv/servemon"
+  },
   "bin": {
     "servemon": "src/cli.js",
     "run": "src/cli.js"

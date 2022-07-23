@@ -1,12 +1,23 @@
 {
   "name": "servemon",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Simple CLI to serve static sites. (Not react, next, remix & etc)",
+  "main": "cli.js",
+  "type": "commonjs",
+  "bin": {
+    "servemon": "src/cli.js",
+    "run": "src/cli.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node src/cli.js",
+    "dev:test": "servemon -p 8080 -s ./build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "cli-spinner": "^0.2.10",
+    "express": "^4.18.1"
+  }
 }

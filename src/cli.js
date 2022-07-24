@@ -80,7 +80,7 @@ if (configContent.watch === true) {
         new Logger("warn").log(
             `${chalk.gray("File")} ${path} ${chalk.gray("changed")}`
         );
-        child_process.execSync(`pnpm dev`, { stdio: "inherit" });
+        child_process.execSync(`servemon`, { stdio: "inherit" });
         new Logger("info").log(`Rebuild complete.`);
     });
 }

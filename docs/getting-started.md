@@ -42,3 +42,7 @@ servemon
 ```
 
 And then you are good to go. Your server starts under 10ms. 🥳
+
+## Examples
+
+You can view an example of how to use servemon [here](https://github.com/lassv/servemon/tree/main/examples)

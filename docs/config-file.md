@@ -19,7 +19,7 @@ module.exports = {
 };
 ```
 
-## Config Probetties
+## Config Values
 
 -   port: `Number` - The port to serve the site on. (Default: 3000)
 -   directory: `String` - The directory to serve. (Default: current directory)

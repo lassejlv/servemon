@@ -1,39 +1,19 @@
-## Servemon
+<p align="center">
+  <a href="https://servemon.netlify.app">
+    <img src="https://servemon.netlify.app/logo.png" alt="Servemon logo" width="200" height="165">
+  </a>
+</p>
 
-Simple CLI to serve static sites. (Not react, next, remix & etc)
+<h3 align="center">Servemon</h3>
 
-## Install
+<p align="center">
+  Simple CLI to serve static sites. (Not react, next, remix & etc)
+</p>
 
-```sh
-pnpm add -g servemon
+## 📦 Documentation
 
-npm install -g servemon
+You can read the servemon documentation [here](https://servemon.netlify.app).
 
-yarn add -g servemon
-```
+## ⭐️ Support Servemon
 
-## Usage
-
-Now you can use it:
-
-```sh
-servemon
-```
-
-## Config file
-
-The file <code>servemon.config.js</code> is required and its used to configure the servemon. Such as the port & the root path.
-
-Config usage:
-
-```js
-module.exports = {
-  port: 3000, // Set your custom port (Default: 3000)
-  directory: "./path/to/your/site", // The directory to serve. (Default: current directory)
-  watch: true, // Watch the directory for changes. (Default: true)
-};
-```
-
-## More features
-
-More features will be added in the future. (Soon)
+If you wanna support Servemon, you can give a star on [GitHub](https://github.com/lassv/servemon/stargazers).

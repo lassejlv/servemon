@@ -4,7 +4,7 @@
     "description": "Simple CLI to serve static sites. (Not react, next, remix & etc)",
     "main": "cli.js",
     "type": "commonjs",
-    "homepage": "https://servemon.js.org",
+    "homepage": "https://servemon.netlify.app",
     "repository": {
         "url": "https://github.com/lassv/servemon"
     },

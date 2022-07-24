@@ -30,6 +30,8 @@ const time = Date.now();
 
 // Express Configuration
 app.use(express.static(configContent.directory || config.defaultDirectory));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "./views"));
 
 app.get("/", (req, res) => {
     try {
@@ -39,6 +41,12 @@ app.get("/", (req, res) => {
     } catch (error) {
         new Logger("error").log(error.message);
     }
+});
+
+app.get("*", (req, res) => {
+    res.render("error", {
+        url: req.url,
+    });
 });
 
 // The server variable.

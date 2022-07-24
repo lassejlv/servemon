@@ -67,7 +67,6 @@ export default defineConfig({
         ],
 
         footer: {
-            message: "Licensed under MIT",
             copyright: "Copyright © 2022 Servemon",
         },
     },

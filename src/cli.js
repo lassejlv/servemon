@@ -14,12 +14,15 @@ const config = require("./config");
 const Logger = require("./utils/Logger");
 const child_process = require("child_process");
 const chokidar = require("chokidar");
+const open = require("open");
 
 const configFile = path.join(process.cwd(), config.configFile);
 
 if (!fs.existsSync(configFile)) {
     new Logger("error").log(
-        `${chalk.gray("Could not find config file:")} ${config.configFile}`
+        `${chalk.bgRed("[ERROR] ")}${chalk.gray(
+            "Could not find config file:"
+        )} ${config.configFile}`
     );
     process.exit(1);
 }
@@ -39,7 +42,7 @@ app.get("/", (req, res) => {
             path.join(configContent.directory || config.defaultDirectory)
         );
     } catch (error) {
-        new Logger("error").log(error.message);
+        new Logger("error").log(chalk.bgRed("[ERROR]") + error.message);
     }
 });
 
@@ -47,6 +50,11 @@ app.get("*", (req, res) => {
     res.render("error", {
         url: req.url,
     });
+
+    new Logger("error").log(
+        chalk.bgRed("[ERROR]") +
+            ` ${chalk.gray("Could not find file:")} ${req.url}`
+    );
 });
 
 // The server variable.
@@ -87,4 +95,10 @@ if (configContent.watch === true) {
 
 setTimeout(() => {
     server;
+
+    if (configContent.open === true) {
+        open(`http://localhost:${configContent.port || 3000}`);
+    } else {
+        return;
+    }
 }, 50);

@@ -1,5 +1,6 @@
 module.exports = {
     configFile: "servemon.config.js",
     defaultDirectory: "./",
-    defaultWatch: true,
+    defaultOpen: false,
+    defaultWatch: false,
 };

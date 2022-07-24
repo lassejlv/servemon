@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 Copyright (c) 2022, Lasse Vestergaard
 This file is a part of the Servemon project.
@@ -32,10 +34,7 @@ app.use(express.static(configContent.directory || config.defaultDirectory));
 app.get("/", (req, res) => {
     try {
         res.sendFile(
-            path.join(
-                configContent.directory || config.defaultDirectory,
-                "index.html"
-            )
+            path.join(configContent.directory || config.defaultDirectory)
         );
     } catch (error) {
         new Logger("error").log(error.message);
@@ -45,7 +44,9 @@ app.get("/", (req, res) => {
 // The server variable.
 const server = app.listen(configContent.port || 3000, () => {
     new Logger("info").log(
-        `${chalk.gray("Servemon listening on port: ")}${configContent.port}`
+        `${chalk.gray("Servemon listening on port: ")}${
+            configContent.port || 3000
+        }`
     );
 
     new Logger("warn").log(
@@ -54,7 +55,7 @@ const server = app.listen(configContent.port || 3000, () => {
 });
 
 // Watch for changes.
-if (configContent.watch === true || config.defaultWatch === true) {
+if (configContent.watch === true) {
     new Logger("info").log("Watching directory for changes...");
 
     const watcher = chokidar.watch(

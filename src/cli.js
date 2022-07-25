@@ -15,6 +15,7 @@ const Logger = require("./utils/Logger");
 const child_process = require("child_process");
 const chokidar = require("chokidar");
 const open = require("open");
+const inquirer = require("inquirer");
 
 const configFile = path.join(process.cwd(), config.configFile);
 
@@ -88,7 +89,7 @@ if (configContent.watch === true) {
         new Logger("warn").log(
             `${chalk.gray("File")} ${path} ${chalk.gray("changed")}`
         );
-        child_process.execSync(`servemon`, { stdio: "inherit" });
+        child_process.execSync(`pnpm dev`, { stdio: "inherit" });
         new Logger("info").log(`Rebuild complete.`);
     });
 }
@@ -96,9 +97,28 @@ if (configContent.watch === true) {
 setTimeout(() => {
     server;
 
+    console.log();
     if (configContent.open === true) {
-        open(`http://localhost:${configContent.port || 3000}`);
-    } else {
-        return;
+        inquirer
+            .prompt([
+                {
+                    type: "confirm",
+                    name: "open",
+                    message: "Do you want to open your site in your browser?",
+                    default: true,
+                },
+            ])
+            .then((answers) => {
+                if (answers.open) {
+                    open(`http://localhost:${configContent.port || 3000}`);
+                } else {
+                    new Logger("warn").log(
+                        chalk.bgYellow("[WARN]") +
+                            `${chalk.gray(
+                                "You canceled opening the site in your browser."
+                            )}`
+                    );
+                }
+            });
     }
 }, 50);

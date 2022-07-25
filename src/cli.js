@@ -156,8 +156,7 @@ process.argv.forEach((val, index) => {
                 new Logger("warn").log(
                     `${chalk.gray("File")} ${path} ${chalk.gray("changed")}`
                 );
-                child_process.execSync(`servemon`, { stdio: "inherit" });
-                new Logger("info").log(`Rebuild complete.`);
+                child_process.execSync(`servemon run`, { stdio: "inherit" });
             });
         }
 

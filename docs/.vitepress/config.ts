@@ -42,7 +42,7 @@ export default defineConfig({
                 items: [
                     {
                         text: "Releases",
-                        link: "https://github.com/facilecss/core/releases",
+                        link: `https://github.com/facilecss/core/releases/tag/v${version}`,
                     },
                 ],
             },

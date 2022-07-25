@@ -25,4 +25,4 @@ module.exports = {
 -   port: `Number` - The port to serve the site on. (Default: 3000)
 -   directory: `String` - The directory to serve. (Default: current directory)
 -   watch: `Boolean` - Watch the directory for changes. (You can set it to true or false)
--   open: `Boolean` - Open the browser when the server starts. (You can set it to true or false)
+-   open: `Boolean` - Servemon will ask you if you want to open the browser. (Default: true)

@@ -18,6 +18,7 @@ const open = require("open");
 const inquirer = require("inquirer");
 
 process.argv.forEach((val, index) => {
+    // Initialize af new config file
     if (val === "--init") {
         inquirer
             .prompt([
@@ -59,7 +60,7 @@ process.argv.forEach((val, index) => {
                     } else if (configs.directory === undefined) {
                         configs.directory = "./";
                     } else if (configs.watch === undefined) {
-                        configs.watch = true;
+                        configs.watch = false;
                     } else if (configs.open === undefined) {
                         configs.open = false;
                     }

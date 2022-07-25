@@ -62,6 +62,11 @@ export default defineConfig({
                         text: "Config File",
                         link: "/config-file",
                     },
+
+                    {
+                        text: "Commands",
+                        link: "/commands",
+                    },
                 ],
             },
         ],

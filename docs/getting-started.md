@@ -17,8 +17,6 @@ yarn add -g servemon
 npm install -g servemon
 ```
 
-(Hint, you can use `pnpx`, `npx`)
-
 ### Step 2
 
 Create a new file called `servemon.config.js`
@@ -38,7 +36,7 @@ module.exports = {
 Start the serve process
 
 ```bash
-servemon
+servemon run
 ```
 
 And then you are good to go. Your server starts under 10ms. 🥳

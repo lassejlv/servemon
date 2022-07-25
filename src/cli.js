@@ -31,7 +31,10 @@ process.argv.forEach((val, index) => {
 
         new Logger("info").log(chalk.green("Config file created!"));
     } else if (val === "run") {
+        // Find the config file.
         const configFile = path.join(process.cwd(), config.configFile);
+
+        // If the config file doesn't exist, throw an error.
         if (!fs.existsSync(configFile)) {
             new Logger("error").log(
                 `${chalk.bgRed("[ERROR] ")}${chalk.gray(
@@ -40,15 +43,21 @@ process.argv.forEach((val, index) => {
             );
             process.exit(1);
         }
+
         new Logger("info").log("Starting Servemon...");
+        // Config File Content
         const configContent = require(configFile);
+        // Take time how long it takes to start the server.
         const time = Date.now();
+
         // Express Configuration
         app.use(
             express.static(configContent.directory || config.defaultDirectory)
         );
         app.set("view engine", "ejs");
         app.set("views", path.join(__dirname, "./views"));
+
+        // The main route, that serves all files.
         app.get("/", (req, res) => {
             try {
                 res.sendFile(
@@ -60,6 +69,8 @@ process.argv.forEach((val, index) => {
                 new Logger("error").log(chalk.bgRed("[ERROR]") + error.message);
             }
         });
+
+        // If file don't exist, throw an error.
         app.get("*", (req, res) => {
             res.render("error", {
                 url: req.url,
@@ -80,6 +91,7 @@ process.argv.forEach((val, index) => {
                 `${chalk.gray("Servemon started in: ")}${Date.now() - time}ms`
             );
         });
+
         // Watch for changes.
         if (configContent.watch === true) {
             new Logger("info").log("Watching directory for changes...");
@@ -99,10 +111,14 @@ process.argv.forEach((val, index) => {
                 new Logger("info").log(`Rebuild complete.`);
             });
         }
+
+        // Staring the server, with a small delay.
         setTimeout(() => {
             server;
-            console.log();
+
+            // The open browser option.
             if (configContent.open === true) {
+                console.log();
                 inquirer
                     .prompt([
                         {

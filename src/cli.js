@@ -19,17 +19,65 @@ const inquirer = require("inquirer");
 
 process.argv.forEach((val, index) => {
     if (val === "--init") {
-        let config = `
-        module.exports = {
-            port: 3000,
-            directory: "./",
-            watch: true,
-         }
-        `;
+        inquirer
+            .prompt([
+                {
+                    type: "checkbox",
+                    name: "configs",
+                    message: "Select what configs you want to use:",
+                    choices: [
+                        { name: "port", value: "port" },
+                        { name: "directory", value: "directory" },
+                        { name: "watch", value: "watch" },
+                        { name: "open", value: "open" },
+                    ],
+                },
+            ])
+            .then((answers) => {
+                let configs = {};
 
-        fs.writeFileSync("./servemon.config.js", config);
+                answers.configs.forEach((config) => {
+                    configs[config] = true;
 
-        new Logger("info").log(chalk.green("Config file created!"));
+                    switch (config) {
+                        case "port":
+                            configs.port = 3000 || 3000;
+                            break;
+                        case "directory":
+                            configs.directory = "./" || "./";
+                            break;
+                        case "watch":
+                            configs.watch = true || false;
+                            break;
+                        case "open":
+                            configs.open = true || false;
+                            break;
+                    }
+
+                    if (configs.port === undefined) {
+                        configs.port = 3000;
+                    } else if (configs.directory === undefined) {
+                        configs.directory = "./";
+                    } else if (configs.watch === undefined) {
+                        configs.watch = true;
+                    } else if (configs.open === undefined) {
+                        configs.open = false;
+                    }
+
+                    let doneConfig = `
+ module.exports = {
+    port: ${configs.port},
+    directory: "${configs.directory}",
+    watch: ${configs.watch},
+    open: ${configs.open},
+};
+                    `;
+
+                    fs.writeFileSync("./servemon.config.js", doneConfig);
+                });
+
+                new Logger("info").log(chalk.green("Config file created!"));
+            });
     } else if (val === "run") {
         // Find the config file.
         const configFile = path.join(process.cwd(), config.configFile);

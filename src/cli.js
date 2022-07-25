@@ -17,108 +17,117 @@ const chokidar = require("chokidar");
 const open = require("open");
 const inquirer = require("inquirer");
 
-const configFile = path.join(process.cwd(), config.configFile);
+process.argv.forEach((val, index) => {
+    if (val === "--init") {
+        let config = `
+        module.exports = {
+            port: 3000,
+            directory: "./",
+            watch: true,
+         }
+        `;
 
-if (!fs.existsSync(configFile)) {
-    new Logger("error").log(
-        `${chalk.bgRed("[ERROR] ")}${chalk.gray(
-            "Could not find config file:"
-        )} ${config.configFile}`
-    );
-    process.exit(1);
-}
-new Logger("info").log("Starting Servemon...");
+        fs.writeFileSync("./servemon.config.js", config);
 
-const configContent = require(configFile);
-const time = Date.now();
-
-// Express Configuration
-app.use(express.static(configContent.directory || config.defaultDirectory));
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "./views"));
-
-app.get("/", (req, res) => {
-    try {
-        res.sendFile(
-            path.join(configContent.directory || config.defaultDirectory)
-        );
-    } catch (error) {
-        new Logger("error").log(chalk.bgRed("[ERROR]") + error.message);
-    }
-});
-
-app.get("*", (req, res) => {
-    res.render("error", {
-        url: req.url,
-    });
-
-    new Logger("error").log(
-        chalk.bgRed("[ERROR]") +
-            ` ${chalk.gray("Could not find file:")} ${req.url}`
-    );
-});
-
-// The server variable.
-const server = app.listen(configContent.port || 3000, () => {
-    new Logger("info").log(
-        `${chalk.gray("Servemon listening on port: ")}${
-            configContent.port || 3000
-        }`
-    );
-
-    new Logger("warn").log(
-        `${chalk.gray("Servemon started in: ")}${Date.now() - time}ms`
-    );
-});
-
-// Watch for changes.
-if (configContent.watch === true) {
-    new Logger("info").log("Watching directory for changes...");
-
-    const watcher = chokidar.watch(
-        configContent.directory || config.defaultDirectory,
-        {
-            ignored: /[\/\\]\./,
-            persistent: true,
+        new Logger("info").log(chalk.green("Config file created!"));
+    } else if (val === "run") {
+        const configFile = path.join(process.cwd(), config.configFile);
+        if (!fs.existsSync(configFile)) {
+            new Logger("error").log(
+                `${chalk.bgRed("[ERROR] ")}${chalk.gray(
+                    "Could not find config file:"
+                )} ${config.configFile}`
+            );
+            process.exit(1);
         }
-    );
-
-    watcher.on("change", (path, stats) => {
-        server.close();
-
-        new Logger("warn").log(
-            `${chalk.gray("File")} ${path} ${chalk.gray("changed")}`
+        new Logger("info").log("Starting Servemon...");
+        const configContent = require(configFile);
+        const time = Date.now();
+        // Express Configuration
+        app.use(
+            express.static(configContent.directory || config.defaultDirectory)
         );
-        child_process.execSync(`servemon`, { stdio: "inherit" });
-        new Logger("info").log(`Rebuild complete.`);
-    });
-}
-
-setTimeout(() => {
-    server;
-
-    console.log();
-    if (configContent.open === true) {
-        inquirer
-            .prompt([
-                {
-                    type: "confirm",
-                    name: "open",
-                    message: "Do you want to open your site in your browser?",
-                    default: true,
-                },
-            ])
-            .then((answers) => {
-                if (answers.open) {
-                    open(`http://localhost:${configContent.port || 3000}`);
-                } else {
-                    new Logger("warn").log(
-                        chalk.bgYellow("[WARN]") +
-                            `${chalk.gray(
-                                "You canceled opening the site in your browser."
-                            )}`
-                    );
-                }
+        app.set("view engine", "ejs");
+        app.set("views", path.join(__dirname, "./views"));
+        app.get("/", (req, res) => {
+            try {
+                res.sendFile(
+                    path.join(
+                        configContent.directory || config.defaultDirectory
+                    )
+                );
+            } catch (error) {
+                new Logger("error").log(chalk.bgRed("[ERROR]") + error.message);
+            }
+        });
+        app.get("*", (req, res) => {
+            res.render("error", {
+                url: req.url,
             });
+            new Logger("error").log(
+                chalk.bgRed("[ERROR]") +
+                    ` ${chalk.gray("Could not find file:")} ${req.url}`
+            );
+        });
+        // The server variable.
+        const server = app.listen(configContent.port || 3000, () => {
+            new Logger("info").log(
+                `${chalk.gray("Servemon listening on port: ")}${
+                    configContent.port || 3000
+                }`
+            );
+            new Logger("warn").log(
+                `${chalk.gray("Servemon started in: ")}${Date.now() - time}ms`
+            );
+        });
+        // Watch for changes.
+        if (configContent.watch === true) {
+            new Logger("info").log("Watching directory for changes...");
+            const watcher = chokidar.watch(
+                configContent.directory || config.defaultDirectory,
+                {
+                    ignored: /[\/\\]\./,
+                    persistent: true,
+                }
+            );
+            watcher.on("change", (path, stats) => {
+                server.close();
+                new Logger("warn").log(
+                    `${chalk.gray("File")} ${path} ${chalk.gray("changed")}`
+                );
+                child_process.execSync(`servemon`, { stdio: "inherit" });
+                new Logger("info").log(`Rebuild complete.`);
+            });
+        }
+        setTimeout(() => {
+            server;
+            console.log();
+            if (configContent.open === true) {
+                inquirer
+                    .prompt([
+                        {
+                            type: "confirm",
+                            name: "open",
+                            message:
+                                "Do you want to open your site in your browser?",
+                            default: true,
+                        },
+                    ])
+                    .then((answers) => {
+                        if (answers.open) {
+                            open(
+                                `http://localhost:${configContent.port || 3000}`
+                            );
+                        } else {
+                            new Logger("warn").log(
+                                chalk.bgYellow("[WARN]") +
+                                    `${chalk.gray(
+                                        "You canceled opening the site in your browser."
+                                    )}`
+                            );
+                        }
+                    });
+            }
+        }, 50);
     }
-}, 50);
+});

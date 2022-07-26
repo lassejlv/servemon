@@ -65,14 +65,12 @@ process.argv.forEach((val, index) => {
                         configs.open = false;
                     }
 
-                    let doneConfig = `
- module.exports = {
+                    let doneConfig = `module.exports = {
     port: ${configs.port},
     directory: "${configs.directory}",
     watch: ${configs.watch},
     open: ${configs.open},
-};
-                    `;
+};`;
 
                     fs.writeFileSync("./servemon.config.js", doneConfig);
                 });

@@ -3,4 +3,5 @@ module.exports = {
     defaultDirectory: "./",
     defaultOpen: false,
     defaultWatch: false,
+    defaultLogger: false,
 };

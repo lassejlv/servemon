@@ -24,5 +24,5 @@ This command is creating a new config file for you. It will ask you some questio
 Usage:
 
 ```bash
-servemon init
+servemon --init
 ```

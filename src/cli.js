@@ -5,6 +5,8 @@ Copyright (c) 2022, Lasse Vestergaard
 This file is a part of the Servemon project.
 */
 
+"use strict";
+
 const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
@@ -17,6 +19,7 @@ const chokidar = require("chokidar");
 const open = require("open");
 const inquirer = require("inquirer");
 const morgan = require("morgan");
+const version = require("../package.json").version;
 
 process.argv.forEach((val, index) => {
     // Initialize af new config file
@@ -200,5 +203,7 @@ process.argv.forEach((val, index) => {
                     });
             }
         }, 50);
+    } else if (val === "--version") {
+        new Logger("info").log(`${chalk.gray("Servemon version: ")}${version}`);
     }
 });

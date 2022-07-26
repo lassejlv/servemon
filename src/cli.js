@@ -16,6 +16,7 @@ const child_process = require("child_process");
 const chokidar = require("chokidar");
 const open = require("open");
 const inquirer = require("inquirer");
+const morgan = require("morgan");
 
 process.argv.forEach((val, index) => {
     // Initialize af new config file
@@ -31,6 +32,7 @@ process.argv.forEach((val, index) => {
                         { name: "directory", value: "directory" },
                         { name: "watch", value: "watch" },
                         { name: "open", value: "open" },
+                        { name: "logger", value: "logger" },
                     ],
                 },
             ])
@@ -53,6 +55,9 @@ process.argv.forEach((val, index) => {
                         case "open":
                             configs.open = true || false;
                             break;
+                        case "logger":
+                            configs.logger = true || false;
+                            break;
                     }
 
                     if (configs.port === undefined) {
@@ -63,6 +68,8 @@ process.argv.forEach((val, index) => {
                         configs.watch = false;
                     } else if (configs.open === undefined) {
                         configs.open = false;
+                    } else if (configs.logger === undefined) {
+                        configs.logger = false;
                     }
 
                     let doneConfig = `module.exports = {
@@ -70,6 +77,7 @@ process.argv.forEach((val, index) => {
     directory: "${configs.directory}",
     watch: ${configs.watch},
     open: ${configs.open},
+    logger: ${configs.logger},
 };`;
 
                     fs.writeFileSync("./servemon.config.js", doneConfig);
@@ -104,6 +112,11 @@ process.argv.forEach((val, index) => {
         app.set("view engine", "ejs");
         app.set("views", path.join(__dirname, "./views"));
 
+        // Morgan site logs, if you user have set it to true.
+        if (configContent.logger === true) {
+            app.use(morgan("dev"));
+        }
+
         // The main route, that serves all files.
         app.get("/", (req, res) => {
             try {
@@ -122,10 +135,6 @@ process.argv.forEach((val, index) => {
             res.render("error", {
                 url: req.url,
             });
-            new Logger("error").log(
-                chalk.bgRed("[ERROR]") +
-                    ` ${chalk.gray("Could not find file:")} ${req.url}`
-            );
         });
         // The server variable.
         const server = app.listen(configContent.port || 3000, () => {

@@ -3,4 +3,5 @@ module.exports = {
     directory: "./",
     watch: true,
     open: true,
+    logger: true,
 };

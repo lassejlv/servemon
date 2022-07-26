@@ -16,7 +16,8 @@ module.exports = {
     port: 3000,
     directory: "./",
     watch: true,
-    open: true,
+    open: false,
+    logger: true,
 };
 ```
 
@@ -26,3 +27,4 @@ module.exports = {
 -   directory: `String` - The directory to serve. (Default: current directory)
 -   watch: `Boolean` - Watch the directory for changes. (You can set it to true or false)
 -   open: `Boolean` - Servemon will ask you if you want to open the browser. (Default: true)
+-   logger: `Boolean` - Servemon will log the requests. (Default: false)

@@ -9,3 +9,9 @@
 JUST AN IDEA OKAY!!!
 
 [] Build command that can bundle the users html, css, javascript files into a build
+
+DOCS:
+
+[x] Edit homepage.
+
+[x] Add version command & gif

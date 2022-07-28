@@ -23,6 +23,18 @@ This command is creating a new config file for you. It will ask you some questio
 
 Usage:
 
+![image info](./init-cmd.gif)
+
 ```bash
 servemon --init
+```
+
+## 📦 Version
+
+This command is showing the version of the servemon.
+
+Usage:
+
+```bash
+servemon --version
 ```

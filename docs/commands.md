@@ -23,7 +23,7 @@ This command is creating a new config file for you. It will ask you some questio
 
 Usage:
 
-![image info](./init-cmd.gif)
+![image info](https://i.ibb.co/x7mWJBL/init-cmd.gif)
 
 ```bash
 servemon --init

@@ -5,3 +5,7 @@
 [x] Create a version command that shows the version of the users current servemon version.
 
 [] Create a function that checks if the current user is using the latest version of the servemon.
+
+JUST AN IDEA OKAY!!!
+
+[] Build command that can bundle the users html, css, javascript files into a build

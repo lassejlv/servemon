@@ -20,6 +20,10 @@ const open = require("open");
 const inquirer = require("inquirer");
 const morgan = require("morgan");
 const version = require("../package.json").version;
+const _checkUpdate = require("./utils/CheckVersion");
+
+// This checks the if the current users servemon version is up to date.
+_checkUpdate();
 
 process.argv.forEach((val, index) => {
     // Initialize af new config file

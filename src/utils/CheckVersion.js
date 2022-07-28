@@ -8,7 +8,8 @@ module.exports = async () => {
         `https://registry.npmjs.com/servemon`
     ).then((text) => text.json());
     if (
-        require("../package.json").version !== packageData["dist-tags"].latest
+        require("../../package.json").version !==
+        packageData["dist-tags"].latest
     ) {
         console.log("\n\n");
         console.log(
@@ -29,9 +30,9 @@ module.exports = async () => {
         );
         console.log(
             "\x1b[34m" +
-                `|                  ${require("../package.json").version} --> ${
-                    packageData["dist-tags"].latest
-                }                |`
+                `|                  ${
+                    require("../../package.json").version
+                } --> ${packageData["dist-tags"].latest}                |`
         );
         console.log(
             "\x1b[36m" +

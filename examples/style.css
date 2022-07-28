@@ -29,7 +29,8 @@
     margin-bottom: 45px;
 }
 
-.button-wrapper a {
+.button-wrapper a,
+button {
     text-decoration: none;
     color: rgb(200, 196, 196);
     font-size: 1.2em;
@@ -47,6 +48,12 @@
 
 .button-wrapper .npm {
     background-color: #cb0101;
+    margin-left: 7px;
+    color: #fff;
+}
+
+.button-wrapper button {
+    cursor: pointer;
     margin-left: 7px;
     color: #fff;
 }

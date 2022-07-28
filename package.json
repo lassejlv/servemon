@@ -27,11 +27,14 @@
         "chalk": "4.1.2",
         "chokidar": "^3.5.3",
         "cli-spinner": "^0.2.10",
+        "cssmin": "^0.4.3",
         "ejs": "^3.1.8",
         "express": "^4.18.1",
         "inquirer": "8.2.4",
+        "minify": "^9.1.0",
         "morgan": "^1.10.0",
-        "open": "^8.4.0"
+        "open": "^8.4.0",
+        "uglify": "^0.1.5"
     },
     "devDependencies": {
         "eslint": "^8.20.0",

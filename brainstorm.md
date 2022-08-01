@@ -15,3 +15,9 @@ DOCS:
 [x] Edit homepage.
 
 [x] Add version command & gif
+
+SERVEMON SMALL DESCRIPTION:
+
+1. Simple CLI to serve static sites. (Not react, next, remix & etc)
+2. A simple CLI that serves static sites. (Not react, next, remix & etc)
+3. Servemon CLI to serve static sites. (Not react, next, remix & etc)

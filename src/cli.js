@@ -231,85 +231,9 @@ process.argv.forEach((val, index) => {
         }
     } else if (val === "--version") {
         new Logger("info").log(`${chalk.gray("Servemon version: ")}${version}`);
-    } else if (val === "--build") {
-        // Minify the files.
+    } else if (val === "build") {
+        const build = require("./build");
 
-        // Find the config file.
-        const configFile = path.join(process.cwd(), config.configFile);
-
-        // If the config file doesn't exist, throw an error.
-        if (!fs.existsSync(configFile)) {
-            new Logger("error").log(
-                `${chalk.bgRed("[ERROR] ")}${chalk.gray(
-                    "Could not find config file:"
-                )} ${config.configFile}`
-            );
-            process.exit(1);
-        }
-
-        const configContent = require(configFile);
-
-        // Build command that can bundle the users html, css, javascript files into a build folder.
-        new Logger("info").log("Building Your Project...");
-        const time = Date.now();
-
-        // get files
-        const files = fs.readdirSync(
-            configContent.directory || config.defaultDirectory
-        );
-
-        // Create the build folder.
-
-        if (!fs.existsSync("./build")) {
-            fs.mkdirSync("./build");
-        } else {
-            // Minify Librarys.
-            const cssmin = require("cssmin");
-
-            // Copy the files to the build folder.
-            files.map((file) => {
-                if (file.endsWith(".html")) {
-                    fs.writeFileSync(
-                        `./build/${file}`,
-                        minifyHtml(
-                            fs.readFileSync(
-                                `./${
-                                    configContent.directory ||
-                                    config.defaultDirectory
-                                }/${file}`,
-                                "utf8"
-                            )
-                        )
-                    );
-                } else if (file.endsWith(".css")) {
-                    const cssContent = cssmin(
-                        fs.readFileSync(
-                            `${
-                                configContent.directory ||
-                                config.defaultDirectory
-                            }/${file}`,
-                            "utf8"
-                        )
-                    );
-                    fs.writeFileSync(`./build/${file}`, cssContent, "utf8");
-                } else if (file.endsWith(".js")) {
-                    const jsContent = minifyJs(
-                        fs.readFileSync(
-                            `${
-                                configContent.directory ||
-                                config.defaultDirectory
-                            }/${file}`,
-                            "utf8"
-                        )
-                    );
-                    fs.writeFileSync(`./build/${file}`, jsContent, "utf8");
-                }
-            });
-
-            // When the build is done, then we print the time it took to build.
-            new Logger("warn").log(
-                `${chalk.gray("Servemon built in: ")}${Date.now() - time}ms`
-            );
-        }
+        build.run();
     }
 });

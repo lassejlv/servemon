@@ -4,12 +4,33 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                background: #111011;
+                color: #fee37f;
+                font-family: monospace;
+                overflow: hidden;
+            }
+            .error {
+                display: flex;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .error a {
+                cursor: pointer;
+            }
+        </style>
         <title>Servemon Error</title>
     </head>
     <body>
-        <p style="color: #444" style="font-family: monospace">
-            The file <b style="color: red"><%= url %></b> was not found on the
-            server.
-        </p>
+        <div class="error">
+            <p>
+                The file <a style="color: rgb(230, 41, 41)"><%= url %></a> was
+                not found on the server.
+            </p>
+        </div>
     </body>
 </html>

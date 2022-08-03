@@ -98,7 +98,7 @@ process.argv.forEach((val, index) => {
                     fs.writeFileSync("./servemon.config.js", doneConfig);
                 });
 
-                new Logger("info").log(chalk.green("Config file created!"));
+                console.log(chalk.green("Config file created!"));
             });
     } else if (val === "run") {
         try {
@@ -107,15 +107,13 @@ process.argv.forEach((val, index) => {
 
             // If the config file doesn't exist, throw an error.
             if (!fs.existsSync(configFile)) {
-                new Logger("error").log(
-                    `${chalk.bgRed("[ERROR] ")}${chalk.gray(
-                        "Could not find config file:"
-                    )} ${config.configFile}`
+                new Logger("ERROR").log(
+                    `Config file ${configFile} doesn't exist!`
                 );
                 process.exit(1);
             }
 
-            new Logger("info").log("Starting Servemon...");
+            new Logger("INFO").log("Starting Servemon...");
             // Config File Content
             const configContent = require(configFile);
             // Take time how long it takes to start the server.
@@ -144,9 +142,7 @@ process.argv.forEach((val, index) => {
                         )
                     );
                 } catch (error) {
-                    new Logger("error").log(
-                        chalk.bgRed("[ERROR]") + error.message
-                    );
+                    new Logger("ERROR").log(error);
                 }
             });
 
@@ -158,21 +154,21 @@ process.argv.forEach((val, index) => {
             });
             // The server variable.
             const server = app.listen(configContent.port || 3000, () => {
-                new Logger("info").log(
-                    `${chalk.gray("Servemon listening on port: ")}${
-                        configContent.port || 3000
-                    }`
+                new Logger("INFO").log(
+                    `Server started on port ${chalk.green(
+                        server.address().port
+                    )}`
                 );
-                new Logger("warn").log(
-                    `${chalk.gray("Servemon started in: ")}${
+                new Logger("INFO").log(
+                    `Servemon started in ${chalk.cyanBright(
                         Date.now() - time
-                    }ms`
+                    )}ms`
                 );
             });
 
             // Watch for changes.
             if (configContent.watch === true) {
-                new Logger("info").log("Watching directory for changes...");
+                new Logger("INFO").log("Watching directory for changes...");
                 const watcher = chokidar.watch(
                     configContent.directory || config.defaultDirectory,
                     {
@@ -182,8 +178,8 @@ process.argv.forEach((val, index) => {
                 );
                 watcher.on("change", (path, stats) => {
                     server.close();
-                    new Logger("warn").log(
-                        `${chalk.gray("File")} ${path} ${chalk.gray("changed")}`
+                    new Logger("INFO").log(
+                        `File ${path} was changed, restarting server...`
                     );
                     child_process.execSync(`servemon run`, {
                         stdio: "inherit",
@@ -216,21 +212,18 @@ process.argv.forEach((val, index) => {
                                     }`
                                 );
                             } else {
-                                new Logger("warn").log(
-                                    chalk.bgYellow("[WARN]") +
-                                        `${chalk.gray(
-                                            "You canceled opening the site in your browser."
-                                        )}`
+                                new Logger("WARN").log(
+                                    `You canceled the process to open the site in the browser.`
                                 );
                             }
                         });
                 }
             }, 50);
         } catch (e) {
-            new Logger("error").log(chalk.bgRed("[ERROR]") + e.message);
+            new Logger("ERROR").log(e.message);
         }
     } else if (val === "--version") {
-        new Logger("info").log(`${chalk.gray("Servemon version: ")}${version}`);
+        console.log(`v${version}`);
     } else if (val === "build") {
         const build = require("./build");
 

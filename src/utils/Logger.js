@@ -1,17 +1,40 @@
+// Import the colors library
 const chalk = require("chalk");
 
-let types = {
-  info: chalk.cyanBright,
-  warn: chalk.yellow,
-  error: chalk.red,
-};
+// Labels types
+const labels = ["INFO", "WARN", "ERROR", "SUCCESS", "FAIL"];
 
-module.exports = class Logger {
-  constructor(type) {
-    this.type = type;
-  }
+// Switch colors
+const colors = labels.map((label) => {
+    switch (label) {
+        case "INFO":
+            return chalk.blue;
+        case "WARN":
+            return chalk.yellow;
+        case "ERROR":
+            return chalk.red;
+        case "SUCCESS":
+            return chalk.green;
+        case "FAIL":
+            return chalk.red;
+        default:
+            return chalk.white;
+    }
+});
 
-  log(message) {
-    console.log(types[this.type](message));
-  }
-};
+// The class for making the Logger to work
+class Logger {
+    constructor(label) {
+        this.label = label;
+    }
+
+    log(message) {
+        console.log(
+            colors[labels.indexOf(this.label)](
+                `[${this.label}] ${chalk.gray(message)}`
+            )
+        );
+    }
+}
+
+module.exports = Logger;

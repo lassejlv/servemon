@@ -1,6 +1,6 @@
 {
     "name": "servemon",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "description": "Simple CLI to serve static sites. (Not react, next, remix & etc)",
     "main": "cli.js",
     "type": "commonjs",

@@ -25,81 +25,10 @@ const _checkUpdate = require("./utils/CheckVersion");
 // This checks the if the current users servemon version is up to date.
 _checkUpdate();
 
-// Minify functions. (html, js)
-function minifyHtml(html) {
-    return html.replace(/\s+/g, " ").replace(/>\s+</g, "><");
-}
-function minifyJs(js) {
-    return js.replace(/\s+/g, " ").replace(/>\s+</g, "><");
-}
-
 process.argv.forEach((val, index) => {
     // Initialize af new config file
     if (val === "--init") {
-        inquirer
-            .prompt([
-                {
-                    type: "checkbox",
-                    name: "configs",
-                    message: "Select what configs you want to use:",
-                    choices: [
-                        { name: "port", value: "port" },
-                        { name: "directory", value: "directory" },
-                        { name: "watch", value: "watch" },
-                        { name: "open", value: "open" },
-                        { name: "logger", value: "logger" },
-                    ],
-                },
-            ])
-            .then((answers) => {
-                let configs = {};
-
-                answers.configs.forEach((config) => {
-                    configs[config] = true;
-
-                    switch (config) {
-                        case "port":
-                            configs.port = 3000 || 3000;
-                            break;
-                        case "directory":
-                            configs.directory = "./" || "./";
-                            break;
-                        case "watch":
-                            configs.watch = true || false;
-                            break;
-                        case "open":
-                            configs.open = true || false;
-                            break;
-                        case "logger":
-                            configs.logger = true || false;
-                            break;
-                    }
-
-                    if (configs.port === undefined) {
-                        configs.port = 3000;
-                    } else if (configs.directory === undefined) {
-                        configs.directory = "./";
-                    } else if (configs.watch === undefined) {
-                        configs.watch = false;
-                    } else if (configs.open === undefined) {
-                        configs.open = false;
-                    } else if (configs.logger === undefined) {
-                        configs.logger = false;
-                    }
-
-                    let doneConfig = `module.exports = {
-    port: ${configs.port},
-    directory: "${configs.directory}",
-    watch: ${configs.watch},
-    open: ${configs.open},
-    logger: ${configs.logger},
-};`;
-
-                    fs.writeFileSync("./servemon.config.js", doneConfig);
-                });
-
-                console.log(chalk.green("Config file created!"));
-            });
+        require("./init");
     } else if (val === "dev") {
         try {
             // Find the config file.

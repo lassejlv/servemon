@@ -110,7 +110,7 @@ process.argv.forEach((val, index) => {
                     new Logger("INFO").log(
                         `File ${path} was changed, restarting server...`
                     );
-                    child_process.execSync(`servemon run`, {
+                    child_process.execSync(`servemon dev`, {
                         stdio: "inherit",
                     });
                 });

@@ -33,7 +33,7 @@ Its will ask if you wan't to use these following options:
 -   open
 -   logger
 
-![image info](https://i.ibb.co/x7mWJBL/init-cmd.gif)
+![image info](https://i.ibb.co/DffNYQQ/init.gif)
 
 ### Step 3
 

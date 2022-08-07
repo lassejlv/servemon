@@ -153,9 +153,5 @@ process.argv.forEach((val, index) => {
         }
     } else if (val === "--version") {
         console.log(`v${version}`);
-    } else if (val === "build") {
-        const build = require("./build");
-
-        build.run();
     }
 });

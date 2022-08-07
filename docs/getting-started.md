@@ -19,24 +19,28 @@ npm install -g servemon
 
 ### Step 2
 
-Create a new file called `servemon.config.js`
+Then you can use the command [--init](/commands#⚡%EF%B8%8F-run) to create a config file.
 
-Config File example
-
-```js
-module.exports = {
-    port: 3000, // Set your custom port (Default: 3000)
-    directory: "./", // The directory to serve. (Default: current directory)
-    watch: true, // Watch the directory for changes. (Default: true)
-};
+```bash
+servemon --init
 ```
+
+Its will ask if you wan't to use these following options:
+
+-   port
+-   directory
+-   watch
+-   open
+-   logger
+
+![image info](https://i.ibb.co/x7mWJBL/init-cmd.gif)
 
 ### Step 3
 
 Start the serve process
 
 ```bash
-servemon run
+servemon dev
 ```
 
 And then you are good to go. Your server starts under 10ms. 🥳

@@ -1,7 +1,7 @@
 module.exports = {
-    port: 3000,
-    directory: "./",
-    watch: true,
+    port: 5000,
+    directory: "./examples",
+    watch: false,
     open: false,
     logger: false,
 }

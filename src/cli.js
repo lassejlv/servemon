@@ -153,5 +153,11 @@ process.argv.forEach((val, index) => {
         }
     } else if (val === "--version") {
         console.log(`v${version}`);
+    } else if (val === "run") {
+        new Logger("ERROR").log(
+            `This command is deprecated. Use ${chalk.greenBright(
+                "servemon dev"
+            )} instead.`
+        );
     }
 });

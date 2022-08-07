@@ -14,7 +14,7 @@ This command is starting the serve process of your site.
 Usage:
 
 ```bash
-servemon run
+servemon dev
 ```
 
 ## 🔨Init

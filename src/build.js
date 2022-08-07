@@ -11,49 +11,26 @@ const config = require("./config");
 
 function build() {
     let time = Date.now();
+
+    // Find the config file.
     const configFile = path.join(process.cwd(), config.configFile);
     const configContent = require(configFile);
 
     // If the config file doesn't exist, throw an error.
     if (!fs.existsSync(configFile)) {
-        new Logger("error").log(
-            `${chalk.bgRed("[ERROR] ")}${chalk.gray(
-                "Could not find config file:"
-            )} ${config.configFile}`
-        );
+        new Logger("ERROR").log(`Config file ${configFile} doesn't exist!`);
         process.exit(1);
     }
 
-    let buildDirectory = configContent.build.directory;
-    let ignoredFiles = configContent.build.ignoredFiles;
-    let rootDictory = configContent.directory;
+    new Logger("INFO").log("Starting build process...");
 
-    if (!buildDirectory) {
-        buildDirectory = "./build";
-    }
-
-    let files = fs.readdirSync(rootDictory);
+    const files = fs.readdirSync(configContent.directory);
 
     files.forEach((file) => {
-        if (ignoredFiles.includes(file)) {
-            new Logger("info").log(
-                `${chalk.cyanBright("[INFO] ")}${chalk.gray(
-                    `Ignoring file: ${chalk.yellow.bold(file)}`
-                )}`
-            );
+        if (configContent.build.ignoredFiles.includes(file)) {
+            files.splice(files.indexOf(file), 1);
 
-            // Filter files from the ignored files list.
-            files = files.filter((file) => !ignoredFiles.includes(file));
-
-            // If there is no files to build, then exit.
-            if (files.length === 0) {
-                new Logger("error").log(
-                    `${chalk.bgRed("[ERROR] ")}${chalk.gray(
-                        "No files to build!"
-                    )}`
-                );
-                process.exit(1);
-            }
+            new Logger("WARN").log(`Removed ${file} from build.`);
         }
     });
 }

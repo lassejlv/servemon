@@ -100,7 +100,7 @@ process.argv.forEach((val, index) => {
 
                 console.log(chalk.green("Config file created!"));
             });
-    } else if (val === "run") {
+    } else if (val === "dev") {
         try {
             // Find the config file.
             const configFile = path.join(process.cwd(), config.configFile);

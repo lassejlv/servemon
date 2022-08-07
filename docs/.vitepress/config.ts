@@ -48,6 +48,15 @@ export default defineConfig({
             },
         ],
 
+        algolia: {
+            appId: "USKYR054KC",
+            apiKey: "cbb8ea4e3c91263eb000f305a375057e",
+            indexName: "servemon js",
+            searchParameters: {
+                facetFilters: ["tags:en"],
+            },
+        },
+
         sidebar: [
             {
                 text: "Introduction",

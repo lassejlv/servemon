@@ -1,12 +1,12 @@
 module.exports = {
     port: 3000,
-    directory: "./examples",
-    watch: true,
-    open: true,
-    logger: true,
+    directory: "./",
+    watch: false,
+    open: false,
+    logger: false,
 
     build: {
-        directory: "./examples/build",
-        ignoredFiles: ["servemon.config.js", "index.html"],
+        outDir: "build",
+        ignoredFiles: ["servemon.config.js", ".gitignore", ".editorconfig"],
     },
 };

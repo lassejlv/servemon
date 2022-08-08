@@ -49,12 +49,9 @@ export default defineConfig({
         ],
 
         algolia: {
-            appId: "USKYR054KC",
-            apiKey: "cbb8ea4e3c91263eb000f305a375057e",
-            indexName: "servemon js",
-            searchParameters: {
-                facetFilters: ["tags:en"],
-            },
+            appId: "RLWV3LU83A",
+            apiKey: "8cea26e4edc2df1519fc55d44d834feb",
+            indexName: "servemon",
         },
 
         sidebar: [

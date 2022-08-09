@@ -55,6 +55,21 @@ try {
         }
     });
 
+    // File Explorer route, that displays all files in the directory.
+    if (configContent.fileExplore == true) {
+        app.get("/explore", async (req, res) => {
+            const files = await fs.readdirSync(
+                configContent.directory || config.defaultDirectory
+            );
+
+            res.render("explore", {
+                files,
+                directory: configContent.directory || config.defaultDirectory,
+                currentFile: req.query.file,
+            });
+        });
+    }
+
     // If file don't exist, throw an error.
     app.get("*", (req, res) => {
         res.render("error", {

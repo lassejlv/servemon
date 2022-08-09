@@ -1,10 +1,10 @@
 module.exports = {
     port: 5000,
     directory: "./examples",
-    watch: false,
+    watch: true,
     open: false,
     logger: false,
-    fileExplore: false,
+    fileExplore: true,
 
     pages: {
         notFound: "./examples/error.html",

@@ -73,9 +73,10 @@ try {
     // If file don't exist, throw an error.
     app.get("*", (req, res) => {
         res.render("error", {
-            url: req.url,
+            error: `File ${req.url} doesn't exist!`,
         });
     });
+
     // The server variable.
     const server = app.listen(configContent.port || 3000, () => {
         new Logger("INFO").log(

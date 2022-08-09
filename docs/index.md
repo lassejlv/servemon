@@ -2,12 +2,12 @@
 layout: home
 
 title: Servemon
-titleTemplate: Simple, fast & clean.
+titleTemplate: Blazing fast...
 
 hero:
     name: Servemon
-    text: Simple, fast & clean.
-    tagline: Simple CLI to serve static sites. (Not react, next, remix & etc)
+    text: Blazing fast...
+    tagline: 🚀⚡ Blazing fast, simple and lightweight web cli server for Node.js
     image:
         src: ./logo.png
         alt: Servemon Logo

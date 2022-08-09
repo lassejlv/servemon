@@ -1,7 +1,7 @@
 {
     "name": "servemon",
     "version": "2.0.2",
-    "description": "Fast, simple and lightweight web cli server for Node.js",
+    "description": "🚀⚡ Blazing fast, simple and lightweight web cli server for Node.js",
     "main": "cli.js",
     "type": "commonjs",
     "homepage": "https://servemon.netlify.app",

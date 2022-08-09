@@ -7,7 +7,7 @@ title: Commands
 
 Here is a list what commands servemon have.
 
-## ⚡️ Run
+## ⚡️ Dev
 
 This command is starting the serve process of your site.
 

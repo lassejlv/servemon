@@ -29,7 +29,7 @@ features:
       details: Servemon is blazing fast, your site is up under 10ms.
     - icon: 🛠️
       title: Simple to use
-      details: Just run `servemon run` and start serving your site.
+      details: Just run `servemon dev` and start serving your site.
 ---
 
 <style>

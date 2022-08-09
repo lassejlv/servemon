@@ -28,3 +28,4 @@ module.exports = {
 -   watch: `Boolean` - Watch the directory for changes. (You can set it to true or false)
 -   open: `Boolean` - Servemon will ask you if you want to open the browser. (Default: true)
 -   logger: `Boolean` - Servemon will log the requests. (Default: false)
+-   explore: `Boolean` - Get a file explore in the browser to see files in your current directory. Go to http://localhost:YOUR_PORT/explore and you are good to go! (Default: false)

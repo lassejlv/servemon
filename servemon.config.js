@@ -4,6 +4,9 @@ module.exports = {
     watch: false,
     open: false,
     logger: false,
-}
+    fileExplore: false,
 
-    
+    pages: {
+        notFound: "./examples/error.html",
+    },
+};

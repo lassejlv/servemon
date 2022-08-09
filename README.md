@@ -1,13 +1,13 @@
 <p align="center">
   <a href="https://servemon.netlify.app">
-    <img src="https://servemon.netlify.app/logo.png" alt="Servemon logo" width="200" height="165">
+    <img src="https://servemon.netlify.app/logo.png" alt="Servemon logo" width="150" height="150">
   </a>
 </p>
 
 <h3 align="center">Servemon</h3>
 
 <p align="center">
-  Simple CLI to serve static sites. (Not react, next, remix & etc)
+  🚀⚡ Blazing fast, simple and lightweight web cli server for Node.js
 </p>
 
 ## 📦 Documentation

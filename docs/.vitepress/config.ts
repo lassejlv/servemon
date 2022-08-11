@@ -56,22 +56,27 @@ export default defineConfig({
 
         sidebar: [
             {
-                text: "Introduction",
+                text: "Documention",
                 collapsible: true,
                 items: [
-                    { text: "Getting Started", link: "/getting-started" },
+                    { text: "⚡️ Getting Started", link: "/getting-started" },
                     {
-                        text: "Why Servemon?",
+                        text: "📦 Why Servemon?",
                         link: "/why-use",
                     },
                     {
-                        text: "Config File",
+                        text: "⚙️ Config File",
                         link: "/config-file",
                     },
 
                     {
-                        text: "Commands",
+                        text: "🔨 Commands",
                         link: "/commands",
+                    },
+
+                    {
+                        text: "💨 Tailwind CSS",
+                        link: "/tailwindcss",
                     },
                 ],
             },

@@ -12,3 +12,7 @@ Some times you try to start a static server up, it can take a some time. But wit
 ## 📦 No Packages Required.
 
 You don't need to install any packages. Just run `servemon dev` and start serving your site.
+
+## 💨 Tailwind CSS
+
+You can use Tailwind CSS with Servemon. Read more [here](/tailwindcss)

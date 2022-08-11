@@ -5,4 +5,12 @@ module.exports = {
     open: false,
     logger: false,
     fileExplore: true,
+
+    tailwind: {
+        enabled: true,
+        watch: true,
+        pkgManager: "pnpx",
+        input: "./FOLDER/CSS_FILE.css",
+        output: "./FOLDER/CSS_FILE.css",
+    },
 };

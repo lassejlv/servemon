@@ -30,6 +30,9 @@ features:
     - icon: 🛠️
       title: Simple to use
       details: Just run `servemon dev` and start serving your site.
+    - icon: 💨
+      title: Build in Tailwind CSS
+      details: Tailwind CSS is build into servemon, so you can easily get started with it.
 ---
 
 <style>

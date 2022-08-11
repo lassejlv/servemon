@@ -39,11 +39,17 @@ process.argv.forEach((val) => {
     } else if (val === "run") {
         require("./run");
     } else if (val === "--tailwind") {
-        if (configContent.tailwind.enabled === true) {
-            require("./tailwind");
-        } else {
+        try {
+            if (configContent.tailwind.enabled === true) {
+                require("./tailwind");
+            } else {
+                new Logger("ERROR").log(
+                    "Tailwind is not enabled in the config file."
+                );
+            }
+        } catch (error) {
             new Logger("ERROR").log(
-                "Tailwind is not enabled in the config file."
+                "You have't initialized tailwind for servemon."
             );
         }
     }

@@ -38,7 +38,7 @@ process.argv.forEach((val) => {
         console.log(`v${version}`);
     } else if (val === "run") {
         require("./run");
-    } else if (val === "--tailwind") {
+    } else if (val === "tailwind") {
         try {
             if (configContent.tailwind.enabled === true) {
                 require("./tailwind");

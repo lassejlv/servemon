@@ -1,6 +1,6 @@
 module.exports = {
     port: 3000,
-    directory: "./examples",
+    directory: "./examples/tailwind",
     watch: true,
     open: false,
     logger: false,
@@ -10,7 +10,7 @@ module.exports = {
         enabled: true,
         watch: true,
         pkgManager: "pnpx",
-        input: "./FOLDER/CSS_FILE.css",
-        output: "./FOLDER/CSS_FILE.css",
+        input: "./examples/tailwind/style.css",
+        output: "./examples/tailwind/tailwind.build.css",
     },
 };

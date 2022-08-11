@@ -36,25 +36,27 @@ module.exports = {
         }, 50);
     }
 
-    try {
-        if (configContent.tailwind.watch === true) {
-            child_process.execSync(
-                `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output} --watch`,
-                {
+    setTimeout(() => {
+        try {
+            if (configContent.tailwind.watch === true) {
+                let cmdTailwind = `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output} --watch`;
+                let cmdAll = `${configContent.tailwind.pkgManager} concurrently --kill-others \"pnpm dev dev\" \"${cmdTailwind}\"`;
+
+                child_process.execSync(cmdAll, {
                     stdio: "inherit",
-                }
-            );
-        } else {
-            child_process.execSync(
-                `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output}`,
-                {
-                    stdio: "inherit",
-                }
-            );
+                });
+            } else {
+                child_process.execSync(
+                    `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output}`,
+                    {
+                        stdio: "inherit",
+                    }
+                );
+            }
+        } catch (error) {
+            new Logger("ERROR").log(error.message);
         }
-    } catch (error) {
-        new Logger("ERROR").log(error.message);
-    }
+    }, 1000);
 } else {
     new Logger("ERROR").log("Tailwind is not enabled in the config file.");
 }

@@ -103,15 +103,9 @@ try {
                 `File ${path} was changed, restarting server...`
             );
 
-            if (configContent.tailwind.enabled === true) {
-                child_process.execSync(`servemon dev --tailwind`, {
-                    stdio: "inherit",
-                });
-            } else {
-                child_process.execSync(`servemon dev`, {
-                    stdio: "inherit",
-                });
-            }
+            child_process.execSync(`servemon dev`, {
+                stdio: "inherit",
+            });
         });
     }
 

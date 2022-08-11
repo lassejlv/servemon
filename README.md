@@ -16,7 +16,7 @@
 [![NPM](https://img.shields.io/npm/v/servemon?style=for-the-badge)](https://npmjs.com/package/servemon)
 [![GitHub](https://img.shields.io/github/stars/lassv/servemon?style=for-the-badge)](#)
 [![GitHub](https://img.shields.io/github/commit-activity/w/lassv/servemon?style=for-the-badge)](#)
-[![NPM](https://img.shields.io/jsdelivr/npm/hm/servemon?label=downloads&style=for-the-badge)](https://npmjs.com/package/hypestyle)
+[![NPM](https://img.shields.io/jsdelivr/npm/hm/servemon?label=downloads&style=for-the-badge)](https://npmjs.com/package/servemon)
 
 ## 📦 Documentation
 

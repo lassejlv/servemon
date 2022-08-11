@@ -25,6 +25,9 @@ const _checkUpdate = require("./utils/CheckVersion");
 // This checks the if the current users servemon version is up to date.
 _checkUpdate();
 
+const configFile = path.join(process.cwd(), config.configFile);
+const configContent = require(configFile);
+
 process.argv.forEach((val) => {
     // Initialize af new config file
     if (val === "--init") {
@@ -35,5 +38,13 @@ process.argv.forEach((val) => {
         console.log(`v${version}`);
     } else if (val === "run") {
         require("./run");
+    } else if (val === "--tailwind") {
+        if (configContent.tailwind.enabled === true) {
+            require("./tailwind");
+        } else {
+            new Logger("ERROR").log(
+                "Tailwind is not enabled in the config file."
+            );
+        }
     }
 });

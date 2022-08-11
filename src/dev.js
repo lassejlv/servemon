@@ -102,9 +102,16 @@ try {
             new Logger("INFO").log(
                 `File ${path} was changed, restarting server...`
             );
-            child_process.execSync(`servemon dev`, {
-                stdio: "inherit",
-            });
+
+            if (configContent.tailwind.enabled === true) {
+                child_process.execSync(`servemon dev --tailwind`, {
+                    stdio: "inherit",
+                });
+            } else {
+                child_process.execSync(`servemon dev`, {
+                    stdio: "inherit",
+                });
+            }
         });
     }
 

@@ -36,18 +36,24 @@ module.exports = {
         }, 50);
     }
 
-    if (configContent.tailwind.watch === true) {
-        let cmd = `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output} --watch`;
-
-        child_process.execSync(cmd, {
-            stdio: "inherit",
-        });
-    } else {
-        let cmd = `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output}`;
-
-        child_process.execSync(cmd, {
-            stdio: "inherit",
-        });
+    try {
+        if (configContent.tailwind.watch === true) {
+            child_process.execSync(
+                `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output} --watch`,
+                {
+                    stdio: "inherit",
+                }
+            );
+        } else {
+            child_process.execSync(
+                `${configContent.tailwind.pkgManager} tailwindcss -i ${configContent.tailwind.input} -o ${configContent.tailwind.output}`,
+                {
+                    stdio: "inherit",
+                }
+            );
+        }
+    } catch (error) {
+        new Logger("ERROR").log(error.message);
     }
 } else {
     new Logger("ERROR").log("Tailwind is not enabled in the config file.");

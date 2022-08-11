@@ -8,7 +8,7 @@ module.exports = {
 
     tailwind: {
         enabled: true,
-        pkgManager: "pnpx",
+        pkgManager: "npx",
         watch: true,
         input: "./examples/tailwind.css",
         output: "./examples/tailwind.build.css",

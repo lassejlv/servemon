@@ -3,7 +3,7 @@ name: "⭐️ Feature request"
 about: Suggest an idea for this project, this will help us.
 title: ''
 labels: 'feature, pending'
-assignees: ''
+assignees: 'lassv'
 
 ---
 

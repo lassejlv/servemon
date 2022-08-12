@@ -2,7 +2,7 @@
 name: "⭐️ Feature request"
 about: Suggest an idea for this project, this will help us.
 title: ''
-labels: 'feature'
+labels: 'feature, pending'
 assignees: ''
 
 ---

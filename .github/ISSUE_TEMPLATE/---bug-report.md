@@ -2,7 +2,7 @@
 name: "⚙️ Bug report"
 about: Do you found a bug? Report it here.
 title: ''
-labels: 'bug'
+labels: 'bug pending'
 assignees: ''
 
 ---

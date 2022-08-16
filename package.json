@@ -1,6 +1,6 @@
 {
     "name": "servemon",
-    "version": "2.0.5",
+    "version": "2.0.9",
     "description": "🚀⚡ Blazing fast & lightweight web cli server for Node.js",
     "main": "cli.js",
     "type": "commonjs",
@@ -35,7 +35,8 @@
         "morgan": "^1.10.0",
         "open": "^8.4.0",
         "tailwindcss": "^3.1.8",
-        "uglify": "^0.1.5"
+        "uglify": "^0.1.5",
+        "webpack": "^5.74.0"
     },
     "devDependencies": {
         "eslint": "^8.20.0",

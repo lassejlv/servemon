@@ -37,5 +37,7 @@ process.argv.forEach((val) => {
         require("./run");
     } else if (val === "--tailwind") {
         require("./tailwind");
+    } else if (val === "build") {
+        require("./build");
     }
 });

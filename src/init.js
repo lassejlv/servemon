@@ -32,44 +32,70 @@ console.log();
 let questions = [
     {
         type: "input",
+        name: "projectName",
+        message: "🤠 What is the name of your project?",
+    },
+
+    {
+        type: "input",
         name: "port",
-        message: "🌏 What port do you want to use? (default: 3000)",
+        message: "🌏 What port do you want to use?",
         default: 3000,
     },
 
     {
         type: "input",
         name: "directory",
-        message: "📂 What directory do you want to use? (default: ./)",
+        message: "📂 What directory do you want to use?",
         default: "./",
     },
 
     {
         type: "confirm",
         name: "watch",
-        message: "⌚ Do you want to watch for changes? (default: true)",
+        message: "⌚ Do you want to watch for changes? (recommended)",
         default: true,
     },
 
     {
         type: "confirm",
         name: "open",
-        message: "🚀 Do you want to open the browser? (default: false)",
+        message: "🚀 Do you want to open the browser?",
         default: false,
     },
 
     {
         type: "confirm",
         name: "logger",
-        message: "📦 Do you want to enable the logger? (default: false)",
+        message: "📦 Do you want to enable the logger?",
         default: false,
     },
 
     {
         type: "confirm",
+        name: "fileExplore",
+        message: "📄 Do you want to enable the file explorer?",
+        default: false,
+    },
+
+    {
+        type: "confirm",
+        name: "tailwind",
+        message: "💅 Do you want to enable Tailwind?",
+        default: false,
+    },
+
+    {
+        type: "list",
+        name: "pkgManager",
+        message: "📦 Which package manager do you want to use?",
+        choices: ["pnpx", "npx", "yarn"],
+    },
+
+    {
+        type: "confirm",
         name: "githubStar",
-        message:
-            "🌟 Do you want to star the project on GitHub? (default: true)",
+        message: "🌟 Do you want to star the project on GitHub? (recommended)",
         default: true,
     },
 ];
@@ -84,11 +110,23 @@ inquirer.prompt(questions).then((answers) => {
     fs.writeFileSync(
         config.configFile,
         `module.exports = {
-    port: ${answers.port},
-    directory: "${answers.directory}",
-    watch: ${answers.watch},
-    open: ${answers.open},
-    logger: ${answers.logger},
+    projectName: "${answers.projectName}",
+    port: ${answers.port}, // Port to use
+    directory: "${answers.directory}", // Directory to use
+    pkgManager: "${answers.pkgManager}", // Package manager you want to use
+    watch: ${answers.watch},  // Watch for changes
+    open: ${answers.open}, // Open the browser
+    fileExplore: ${answers.fileExplore}, // Enable file explorer
+    logger: ${answers.logger}, // Enable logger
+
+    ${
+        answers.tailwind
+            ? `tailwind: { 
+        enabled: true, 
+        watch: true 
+    },`
+            : ""
+    }
 }
 
     `

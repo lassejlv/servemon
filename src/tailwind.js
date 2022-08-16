@@ -17,7 +17,7 @@ const tailwindConfigFile = path.join(process.cwd(), "tailwind.config.js");
 const configContent = require(configFile);
 
 try {
-    if (configContent.tailwind.enabled === true) {
+    if (configContent.tailwind.enabled == true) {
         require("./tailwind");
     } else {
         new Logger("ERROR").log("Tailwind is not enabled in the config file.");

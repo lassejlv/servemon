@@ -1,6 +1,7 @@
 module.exports = {
     port: 3000,
-    directory: "./examples/tailwind",
+    directory: "./examples/simple",
+    pkgManager: "pnpm",
     watch: true,
     open: false,
     logger: false,

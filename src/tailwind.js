@@ -16,6 +16,16 @@ const configFile = path.join(process.cwd(), config.configFile);
 const tailwindConfigFile = path.join(process.cwd(), "tailwind.config.js");
 const configContent = require(configFile);
 
+try {
+    if (configContent.tailwind.enabled === true) {
+        require("./tailwind");
+    } else {
+        new Logger("ERROR").log("Tailwind is not enabled in the config file.");
+    }
+} catch (error) {
+    new Logger("ERROR").log("You have't initialized tailwind for servemon.");
+}
+
 if (configContent.tailwind.enabled === true) {
     if (!fs.existsSync(tailwindConfigFile)) {
         setTimeout(() => {

@@ -103,7 +103,21 @@ try {
                 `File ${path} was changed, restarting server...`
             );
 
-            child_process.execSync(`servemon dev`, {
+            let cmd = "";
+
+            if (configContent.pkgManager === "pnpx") {
+                cmd = `pnpx servemon dev`;
+            } else if (configContent.pkgManager === "pnpm") {
+                cmd = `pnpm dev dev`;
+            } else if (configContent.pkgManager === "yarn") {
+                cmd = `yarn servemon dev`;
+            } else if (configContent.pkgManager === "npx") {
+                cmd = `npx servemon dev`;
+            } else {
+                cmd = `servemon dev`;
+            }
+
+            child_process.execSync(`${cmd}`, {
                 stdio: "inherit",
             });
         });

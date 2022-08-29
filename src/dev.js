@@ -73,7 +73,7 @@ try {
     // If file don't exist, throw an error.
     app.get("*", (req, res) => {
         res.render("error", {
-            error: `File ${req.url} doesn't exist!`,
+            error: `File /${req.url} doesn't exist!`,
         });
     });
 
@@ -100,7 +100,7 @@ try {
 
     // Watch for changes.
     if (configContent.watch === true) {
-        new Logger("INFO").log("Watching directory for changes...");
+        new Logger("INFO").log("    ➤ Watching directory for changes...");
         const watcher = chokidar.watch(
             configContent.directory || config.defaultDirectory,
             {
@@ -111,7 +111,7 @@ try {
         watcher.on("change", (path, stats) => {
             server.close();
             new Logger("INFO").log(
-                `File ${path} was changed, restarting server...`
+                `    ➤ File ${path} was changed, restarting server...`
             );
 
             let cmd = "";

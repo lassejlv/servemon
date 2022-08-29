@@ -2,7 +2,7 @@
 const chalk = require("chalk");
 
 // Labels types
-const labels = ["INFO", "WARN", "ERROR", "SUCCESS", "FAIL"];
+const labels = ["INFO", "WARN", "ERROR", "SUCCESS", "FAIL", "LOGGER"];
 
 // Switch colors
 const colors = labels.map((label) => {
@@ -17,6 +17,8 @@ const colors = labels.map((label) => {
             return chalk.green;
         case "FAIL":
             return chalk.red;
+        case "LOGGER":
+            return chalk.cyan;
         default:
             return chalk.white;
     }

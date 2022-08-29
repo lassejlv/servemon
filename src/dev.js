@@ -113,6 +113,8 @@ try {
                 cmd = `yarn servemon dev`;
             } else if (configContent.pkgManager === "npx") {
                 cmd = `npx servemon dev`;
+            } else if (configContent.pkgManager === "servemon") {
+                cmd = `servemon dev`;
             } else {
                 cmd = `servemon dev`;
             }

@@ -89,7 +89,7 @@ let questions = [
         type: "list",
         name: "pkgManager",
         message: "📦 Which package manager do you want to use?",
-        choices: ["pnpx", "npx", "yarn"],
+        choices: ["pnpx", "npx", "yarn", "servemon"],
     },
 
     {

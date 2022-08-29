@@ -85,12 +85,21 @@ try {
         );
 
         console.log(
-            `    ➤ Local: ${chalk.redBright(
+            `    ➤ 🚀 Local: ${chalk.redBright(
                 `http://localhost:${server.address().port}`
             )}`
         );
         console.log(
-            `    ➤ Tip: ${chalk.yellow(
+            `    ➤ 📂 Serving files in: ${chalk.gray(
+                `${configContent.directory || config.defaultDirectory}`
+            )}`
+        );
+
+        if (configContent.watch === true) {
+            console.log("    ➤ ⌚ Watching directory for changes...");
+        }
+        console.log(
+            `    ➤ 🔨 Tip: ${chalk.yellow(
                 `You can change things in the: servemon.config.js file.`
             )}\n`
         );
@@ -100,7 +109,6 @@ try {
 
     // Watch for changes.
     if (configContent.watch === true) {
-        new Logger("INFO").log("    ➤ Watching directory for changes...");
         const watcher = chokidar.watch(
             configContent.directory || config.defaultDirectory,
             {

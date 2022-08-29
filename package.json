@@ -1,6 +1,6 @@
 {
     "name": "servemon",
-    "version": "2.1.7",
+    "version": "2.1.9",
     "description": "🚀⚡ Blazing fast & lightweight web server for Node.js",
     "main": "cli.js",
     "type": "commonjs",

@@ -17,6 +17,7 @@ const chokidar = require("chokidar");
 const open = require("open");
 const inquirer = require("inquirer");
 const morgan = require("morgan");
+const { version, name } = require("../package.json");
 
 try {
     // Find the config file.
@@ -28,7 +29,6 @@ try {
         process.exit(1);
     }
 
-    new Logger("INFO").log("Starting Servemon...");
     // Config File Content
     const configContent = require(configFile);
     // Take time how long it takes to start the server.
@@ -79,12 +79,23 @@ try {
 
     // The server variable.
     const server = app.listen(configContent.port || 3000, () => {
-        new Logger("INFO").log(
-            `Server started on port ${chalk.green(server.address().port)}`
+        console.log(
+            chalk.yellowBright(`    ${name} v${version} `) +
+                chalk.blueBright("server is running at:\n")
         );
-        new Logger("INFO").log(
-            `Servemon started in ${chalk.cyanBright(Date.now() - time)}ms`
+
+        console.log(
+            `    ➤ Local: ${chalk.redBright(
+                `http://localhost:${server.address().port}`
+            )}`
         );
+        console.log(
+            `    ➤ Tip: ${chalk.yellow(
+                `You can change things in the: servemon.config.js file.`
+            )}\n`
+        );
+
+        console.log(chalk.yellowBright(`    ready in ${Date.now() - time}ms`));
     });
 
     // Watch for changes.

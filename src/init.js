@@ -6,7 +6,6 @@ This file is a part of the Servemon project.
 "use strict";
 
 const fs = require("fs");
-const path = require("path");
 const chalk = require("chalk");
 const config = require("./config");
 const Logger = require("./utils/Logger");

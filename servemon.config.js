@@ -1,10 +1,14 @@
 module.exports = {
-    projectName: "lasse",
+    projectName: "my-project",
     port: 3000, // Port to use
     directory: "./", // Directory to use
-    pkgManager: "pnpx", // Package manager you want to use
-    watch: true, // Watch for changes
+    pkgManager: "servemon", // Package manager you want to use
+    watch: false,  // Watch for changes
     open: false, // Open the browser
     fileExplore: false, // Enable file explorer
     logger: false, // Enable logger
-};
+
+    
+}
+
+    

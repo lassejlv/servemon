@@ -34,6 +34,7 @@ let questions = [
         type: "input",
         name: "projectName",
         message: "🤠 What is the name of your project?",
+        default: "my-project",
     },
 
     {
@@ -54,7 +55,7 @@ let questions = [
         type: "confirm",
         name: "watch",
         message: "⌚ Do you want to watch for changes? (recommended)",
-        default: true,
+        default: false,
     },
 
     {

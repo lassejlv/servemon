@@ -31,7 +31,7 @@ class Logger {
     log(message) {
         console.log(
             colors[labels.indexOf(this.label)](
-                `[${this.label}] ${chalk.gray(message)}`
+                `    [${this.label}] ${chalk.gray(message)}`
             )
         );
     }

@@ -51,7 +51,7 @@ try {
                 path.join(configContent.directory || config.defaultDirectory)
             );
         } catch (error) {
-            new Logger("ERROR").log(error);
+            new Logger("ERROR").log(`${error.message}`);
         }
     });
 

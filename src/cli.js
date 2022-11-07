@@ -7,18 +7,8 @@ This file is a part of the Servemon project.
 
 "use strict";
 
-const fs = require("fs");
-const path = require("path");
 const chalk = require("chalk");
-const express = require("express");
-const app = express();
-const config = require("./config");
 const Logger = require("./utils/Logger");
-const child_process = require("child_process");
-const chokidar = require("chokidar");
-const open = require("open");
-const inquirer = require("inquirer");
-const morgan = require("morgan");
 const version = require("../package.json").version;
 const _checkUpdate = require("./utils/CheckVersion");
 
@@ -34,7 +24,11 @@ process.argv.forEach((val) => {
     } else if (val === "--version") {
         console.log(`v${version}`);
     } else if (val === "run") {
-        require("./run");
+        new Logger("ERROR").log(
+            `This command is deprecated. Use ${chalk.greenBright(
+                "servemon dev"
+            )} instead.`
+        );
     } else if (val === "--tailwind") {
         require("./tailwind");
     } else if (val === "build") {

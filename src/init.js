@@ -80,20 +80,6 @@ let questions = [
 
     {
         type: "confirm",
-        name: "tailwind",
-        message: "💅 Do you want to enable Tailwind?",
-        default: false,
-    },
-
-    {
-        type: "list",
-        name: "pkgManager",
-        message: "📦 Which package manager do you want to use?",
-        choices: ["pnpx", "npx", "yarn"],
-    },
-
-    {
-        type: "confirm",
         name: "githubStar",
         message: "🌟 Do you want to star the project on GitHub? (recommended)",
         default: true,
@@ -113,7 +99,6 @@ inquirer.prompt(questions).then((answers) => {
     projectName: "${answers.projectName}",
     port: ${answers.port}, // Port to use
     directory: "${answers.directory}", // Directory to use
-    pkgManager: "${answers.pkgManager}", // Package manager you want to use
     watch: ${answers.watch},  // Watch for changes
     open: ${answers.open}, // Open the browser
     fileExplore: ${answers.fileExplore}, // Enable file explorer

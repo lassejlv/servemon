@@ -17,6 +17,8 @@ const chokidar = require("chokidar");
 const open = require("open");
 const inquirer = require("inquirer");
 const morgan = require("morgan");
+const livereload = require("livereload");
+const connectLivereload = require("connect-livereload");
 
 try {
     // Find the config file.
@@ -90,37 +92,24 @@ try {
     // Watch for changes.
     if (configContent.watch === true) {
         new Logger("INFO").log("Watching directory for changes...");
-        const watcher = chokidar.watch(
-            configContent.directory || config.defaultDirectory,
-            {
-                ignored: /[\/\\]\./,
-                persistent: true,
-            }
+
+        // open livereload high port and start to watch public directory for changes
+        const liveReloadServer = livereload.createServer();
+        liveReloadServer.watch(
+            path.join(
+                __dirname,
+                configContent.directory || config.defaultDirectory
+            )
         );
-        watcher.on("change", (path, stats) => {
-            server.close();
-            new Logger("INFO").log(
-                `File ${path} was changed, restarting server...`
-            );
 
-            let cmd = "";
-
-            if (configContent.pkgManager === "pnpx") {
-                cmd = `pnpx servemon dev`;
-            } else if (configContent.pkgManager === "pnpm") {
-                cmd = `pnpm dev dev`;
-            } else if (configContent.pkgManager === "yarn") {
-                cmd = `yarn servemon dev`;
-            } else if (configContent.pkgManager === "npx") {
-                cmd = `npx servemon dev`;
-            } else {
-                cmd = `servemon dev`;
-            }
-
-            child_process.execSync(`${cmd}`, {
-                stdio: "inherit",
-            });
+        // ping browser on Express boot, once browser has reconnected and handshaken
+        liveReloadServer.server.once("connection", () => {
+            setTimeout(() => {
+                liveReloadServer.refresh("/");
+            }, 100);
         });
+
+        app.use(connectLivereload());
     }
 
     // Staring the server, with a small delay.

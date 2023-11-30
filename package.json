@@ -1,48 +1,34 @@
 {
-    "name": "servemon",
-    "version": "3.0.0",
-    "description": "🚀⚡ Blazing fast & lightweight web cli server for Node.js",
-    "main": "cli.js",
-    "type": "commonjs",
-    "homepage": "https://servemon.netlify.app",
-    "repository": {
-        "url": "https://github.com/lassv/servemon"
-    },
-    "bin": {
-        "servemon": "src/cli.js",
-        "run": "src/cli.js"
-    },
-    "scripts": {
-        "dev": "node src/cli.js",
-        "dev:test": "servemon -p 8080 -s ./build",
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:serve": "vitepress serve docs"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@moebius/http-graceful-shutdown": "^1.1.0",
-        "chalk": "4.1.2",
-        "chokidar": "^3.5.3",
-        "cli-spinner": "^0.2.10",
-        "connect-livereload": "^0.6.1",
-        "cssmin": "^0.4.3",
-        "ejs": "^3.1.8",
-        "express": "^4.18.1",
-        "inquirer": "8.2.4",
-        "livereload": "^0.9.3",
-        "minify": "^9.1.0",
-        "morgan": "^1.10.0",
-        "open": "^8.4.0",
-        "tailwindcss": "^3.1.8",
-        "uglify": "^0.1.5",
-        "webpack": "^5.74.0"
-    },
-    "devDependencies": {
-        "eslint": "^8.20.0",
-        "vitepress": "1.0.0-alpha.4",
-        "vue": "^3.2.37"
-    }
+  "name": "servemon",
+  "version": "3.0.1",
+  "description": "🚀⚡ Blazing fast & lightweight web cli server for Node.js",
+  "main": "src/index.js",
+  "type": "module",
+  "homepage": "https://servemon.netlify.app",
+  "repository": {
+    "url": "https://github.com/lassejlv/servemon"
+  },
+  "bin": {
+    "servemon": "src/index.js",
+    "run": "src/index.js"
+  },
+  "scripts": {
+    "dev": "node --watch .",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "express": "^4.18.2",
+    "term-logger": "^1.2.5",
+    "webpack": "^5.89.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.4"
+  }
 }

@@ -18,21 +18,18 @@ hero:
 
         - theme: alt
           text: View on GitHub
-          link: https://github.com/lassv/servemon
+          link: https://github.com/lassejlv/servemon
 
 features:
     - icon: ⚙️
       title: Functional
-      details: Get a config file, to configure your custom port, root folder, etc.
+      details: Configure your server with a simple config file.
     - icon: ⚡️
       title: Focus on speed
       details: Servemon is blazing fast, your site is up under 10ms.
     - icon: 🛠️
       title: Simple to use
-      details: Just run `servemon dev` and start serving your site.
-    - icon: 💨
-      title: Build in Tailwind CSS
-      details: Tailwind CSS is build into servemon, so you can easily get started with it.
+      details: Just run `servemon` and start serving your site.
 ---
 
 <style>

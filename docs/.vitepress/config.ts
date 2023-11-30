@@ -9,13 +9,12 @@ export default defineConfig({
     lang: "en-US",
     title: "Servemon",
     description:
-        "Simple CLI to serve static sites. (Not react, next, remix & etc)",
+        "🚀⚡ Blazing fast, simple and lightweight web cli server for Node.js",
 
     head: [["link", { rel: "icon", type: "image/png", href: "./logo.png" }]],
 
     lastUpdated: true,
     appearance: true,
-
     markdown: {
         theme: "material-palenight",
         lineNumbers: true,
@@ -25,12 +24,12 @@ export default defineConfig({
         logo: "./logo.png",
 
         editLink: {
-            pattern: "https://github.com/lassv/servemon/edit/main/docs/:path",
+            pattern: "https://github.com/lassejlv/servemon/edit/main/docs/:path",
             text: "Edit this page on GitHub",
         },
 
         socialLinks: [
-            { icon: "github", link: "https://github.com/lassv/servemon" },
+            { icon: "github", link: "https://github.com/lassejlv/servemon" },
         ],
 
         nav: [
@@ -59,24 +58,19 @@ export default defineConfig({
                 text: "Documention",
                 collapsible: true,
                 items: [
-                    { text: "⚡️ Getting Started", link: "/getting-started" },
+                    { text: "Getting Started", link: "/getting-started" },
                     {
-                        text: "📦 Why Servemon?",
+                        text: "Why Servemon?",
                         link: "/why-use",
                     },
                     {
-                        text: "⚙️ Config File",
-                        link: "/config-file",
+                        text: "Configuration",
+                        link: "/configuration",
                     },
 
                     {
-                        text: "🔨 Commands",
+                        text: "Commands",
                         link: "/commands",
-                    },
-
-                    {
-                        text: "💨 Tailwind CSS",
-                        link: "/tailwindcss",
                     },
                 ],
             },

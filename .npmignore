@@ -1,5 +1,4 @@
-examples
-servemon.config.js
+node_modules
+test
+servemon.json
 docs
-brainstorm.md
-tailwind.config.js

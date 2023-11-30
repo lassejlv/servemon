@@ -11,12 +11,11 @@ import {
 
 const members = [
   {
-    avatar: 'https://github.com/lassv.png',
+    avatar: 'https://github.com/lassejlv.png',
     name: 'Lasse Vestergaard',
     title: 'Creator',
     links: [
-      { icon: 'github', link: 'https://github.com/lassv' },
-      { icon: 'twitter', link: 'https://twitter.com/lassv_05' }
+      { icon: 'github', link: 'https://github.com/lassejlv' },
     ]
   },
 ]

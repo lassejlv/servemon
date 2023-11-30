@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    dasdas
+<script>
+       <!-- Code injected by Servemon because its running in watch mode -->
+        const ws = new WebSocket("ws://localhost:4000");
+        ws.onmessage = (event) => {
+          if (event.data === "reload.page") {
+            window.location.reload();
+          }
+        };
+      </script></body>
+</html>

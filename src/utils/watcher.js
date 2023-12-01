@@ -1,7 +1,9 @@
+import fs from "fs";
+import path from "path";
 import { WebSocketServer } from "ws";
 import { getConfig } from "./getConfig.js";
-import fs from "fs";
 import server from "../index.js";
+import { getAllHtmlFiles } from "./getHtmlFiles.js";
 
 export const watcher = (Logger) => {
   // Gets the configs
@@ -15,7 +17,11 @@ export const watcher = (Logger) => {
     const data = fs.readFileSync(filePath, "utf8");
 
     // Check if the script is already injected.
-    if (data.includes("<!-- Code injected by Servemon because its running in watch mode -->")) {
+    if (
+      data.includes(
+        "<!-- Code injected by Servemon because its running in watch mode -->"
+      )
+    ) {
       return;
     }
 
@@ -35,15 +41,13 @@ export const watcher = (Logger) => {
     fs.writeFileSync(filePath, result, "utf8");
   };
 
-  // run the inject script function for all html files in the directory and subdirectories
+  // Function to run the inject script for all HTML files
   const injectScriptForAllHtmlFiles = () => {
-    const files = fs.readdirSync(config.dir || "./", "utf8").filter((file) => {
-        return file.endsWith(".html");
-    });
+    const directoryToSearch = config.dir || "./";
+    const htmlFiles = getAllHtmlFiles(directoryToSearch);
 
-    
-    for (const file of files) {
-      injectScript(`${config.dir || "./"}/${file}`);
+    for (const file of htmlFiles) {
+      injectScript(file);
     }
   };
 
@@ -57,9 +61,10 @@ export const watcher = (Logger) => {
     Logger.success("WebSocket server listening");
   });
 
-  fs.watch(config.dir || "./", (event, filename) => {
+  fs.watch(config.dir || "./", { recursive: true }, (event, filename) => {
     console.clear();
-    Logger.info(`File ${filename} changed`);
+    const filePath = path.join(config.dir || "./", filename);
+    Logger.info(`File ${filePath} changed`);
 
     wss.clients.forEach((client) => {
       client.send("reload.page");

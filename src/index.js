@@ -47,6 +47,7 @@ app.get('*', (req, res) => {
 });
 
 server.listen(config.port || 3000, () => {
+    console.clear();
     Logger.success(`Your app is running on the address: http://localhost:${config.port || 3000}`);
     Logger.info(`Press Ctrl+C to exit.`);
     Logger.info(`Using directory: ${config.dir || './'}`);

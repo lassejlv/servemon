@@ -1,15 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { template } from './template.js';
+import { Logger } from 'term-logger';
 
 
 const file_name = 'servemon.json';
 
-export const getConfig = () => {
+export function getConfig()  {
 
     function returnConfig() {
         const configPath = path.join(process.cwd(), file_name);
-        const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        const file = fs.readFileSync(configPath, 'utf8')
+        const config = JSON.parse(file);
         return config;
     }
 

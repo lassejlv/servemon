@@ -1,15 +1,16 @@
 import express from "express";
 import http from "http";
 import path from "path";
+import fs from "fs";
 import { getConfig } from "./utils/getConfig.js";
 import { watcher } from "./utils/watcher.js";
-import packageJson from "../package.json" assert { type: "json" };
 import termLogger from "term-logger"
 const { Logger } = termLogger;
 
 
 // esm __dirname fix
 const __dirname = path.resolve();
+const version = "3.1.1"
 
 let config;
 
@@ -22,17 +23,26 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
     console.log(`  Run the server in development mode by default.`);
     process.exit(0);
 } else if (process.argv.includes('--version')) {
-    console.log(`servemon v${packageJson.version}`);
+    console.log(`📦 servemon v${version}`)
     process.exit(0);
 } 
 
 
 // Gets the configs
 config = getConfig();
+
+// Check if the directory exists
+if (!fs.existsSync(config.dir || './')) {
+    Logger.error(`The directory ${config.dir || './'} does not exist.`);
+    process.exit(1);
+}
+
+
 const app = express();
 const server = http.createServer(app);
 export default server;
 app.use(express.static(config.dir || './'));
+
 
 // Watcher
 if (config.watch) {

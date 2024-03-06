@@ -1,7 +1,6 @@
-export const template = `{
-  "dir": "./",
+{
+  "dir": "./t",
   "port": 4000,
   "logger": false,
   "watch": true
 }
-`

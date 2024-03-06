@@ -19,7 +19,7 @@ export const watcher = (Logger) => {
     // Check if the script is already injected.
     if (
       data.includes(
-        "<!-- Code injected by Servemon because its running in watch mode -->"
+        "// Code injected by Servemon because its running in watch mode "
       )
     ) {
       return;
@@ -28,7 +28,7 @@ export const watcher = (Logger) => {
     const result = data.replace(
       "</body>",
       `<script>
-       <!-- Code injected by Servemon because its running in watch mode -->
+       // Code injected by Servemon because its running in watch mode
         const ws = new WebSocket("ws://localhost:${config.port || 3000}");
         ws.onmessage = (event) => {
           if (event.data === "reload.page") {
@@ -62,9 +62,9 @@ export const watcher = (Logger) => {
   });
 
   fs.watch(config.dir || "./", { recursive: true }, (event, filename) => {
-    console.clear();
+    //console.clear();
     const filePath = path.join(config.dir || "./", filename);
-    Logger.info(`File ${filePath} changed`);
+    Logger.info(`File has ${filePath} changed (reload.page)`);
 
     wss.clients.forEach((client) => {
       client.send("reload.page");

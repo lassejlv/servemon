@@ -1,6 +1,6 @@
 {
   "name": "servemon",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "🚀⚡ Blazing fast & lightweight web cli server for Node.js",
   "main": "src/index.js",
   "type": "module",

@@ -9,6 +9,8 @@ export const watcher = (Logger) => {
   // Gets the configs
   const config = getConfig();
 
+  let timeToReload = Date.now();
+
   // Initialize watcher.
   Logger.success("Process started. Watching for file changes...");
 
@@ -62,12 +64,20 @@ export const watcher = (Logger) => {
   });
 
   fs.watch(config.dir || "./", { recursive: true }, (event, filename) => {
-    //console.clear();
+    console.clear();
     const filePath = path.join(config.dir || "./", filename);
     Logger.info(`File has ${filePath} changed (reload.page)`);
 
     wss.clients.forEach((client) => {
       client.send("reload.page");
     });
+
+   if (config.timer) {
+      // Format the time like 1100 will be 1.1s
+      let tookTime = (Date.now() - timeToReload) / 1000;
+
+      Logger.info(`Reloaded in: ${tookTime}ms`);
+      timeToReload = Date.now();
+   }
   });
 };

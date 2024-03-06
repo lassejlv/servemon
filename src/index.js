@@ -10,7 +10,8 @@ const { Logger } = termLogger;
 
 // esm __dirname fix
 const __dirname = path.resolve();
-const version = "3.1.1"
+const version = "3.1.2"
+let timeToStart = Date.now();
 
 let config;
 
@@ -59,6 +60,11 @@ app.get('*', (req, res) => {
 server.listen(config.port || 3000, () => {
     console.clear();
     Logger.success(`Your app is running on the address: http://localhost:${config.port || 3000}`);
+    
+    if (config.timer) {
+        Logger.info(`Started in: ${Date.now() - timeToStart}ms`);
+    }
+
     Logger.info(`Press Ctrl+C to exit.`);
     Logger.info(`Using directory: ${config.dir || './'}`);
 });

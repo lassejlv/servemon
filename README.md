@@ -1,5 +1,5 @@
 # Servemon
-🚀⚡ Blazing fast &amp; lightweight web cli server for Node.js
+⚡ Blazing fast &amp; lightweight web cli server for Node.js. That always starts and reloads under 10-8ms 😎
 
 
 # Getting Started
@@ -12,7 +12,7 @@ Install servemon
 bun add -g servemon
 pnpm add -g servemon
 yarn add -g servemon
-npm install -g servemo
+npm install -g servemon
 ```
 
 ### Step 2
@@ -23,7 +23,7 @@ Start the serve process
 servemon
 ```
 
-And then you are good to go. Your server starts under 10ms. 🥳
+And then you are good to go. Your server starts under 8-10ms. 🥳
 
 
 # Configuration

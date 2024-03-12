@@ -10,7 +10,7 @@ const { Logger } = termLogger;
 
 // esm __dirname fix
 const __dirname = path.resolve();
-const version = "3.1.2"
+const version = "3.1.3"
 let timeToStart = Date.now();
 
 let config;
